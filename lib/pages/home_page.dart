@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
 
   void _signOut() async {
     _auth.signOut();
-    // Navigator.pushNamed(context, '/login');
+
     Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
 
   }
