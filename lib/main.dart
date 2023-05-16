@@ -18,7 +18,7 @@ Future<void> main() async{
   await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   runApp(
       MaterialApp(
-        initialRoute: '/weather',
+        initialRoute: '/home',
         routes: {
           '/login': (context) => const Login(),
           '/home': (context) => const HomePage(),
