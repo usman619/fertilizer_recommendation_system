@@ -63,6 +63,15 @@ class _HomePageState extends State<HomePage> {
 
       return Column(
         children: [
+          const Text(
+            'Weather Data',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 25,
+            ),
+          ),
+
           circularIndicator('Temperature', '°C', temperature),
 
           circularIndicator('Humidity', '%', humidity),
@@ -115,8 +124,10 @@ class _HomePageState extends State<HomePage> {
         ],
       );
     } else {
+
       return const CircularProgressIndicator();
     }
+
   }
 
   @override
@@ -143,7 +154,20 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: SingleChildScrollView(
-        child: _buildWeatherData(),
+        child: Column(children: <Widget>[
+          _buildWeatherData(),
+          const Center(
+            child: Text(
+              'IoT Device Data',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+          ),
+        ]
+        ),
       ),
       // bottomNavigationBar: BottomNavigationBar(
       //

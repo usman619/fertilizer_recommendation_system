@@ -2,8 +2,8 @@ import 'dart:convert';
 // import 'dart:js';
 
 import 'package:fertilizer_recommendation_system/pages/home_page.dart';
-import 'package:fertilizer_recommendation_system/services/model_api.dart';
-import 'package:fertilizer_recommendation_system/services/weather_api.dart';
+import 'package:fertilizer_recommendation_system/pages/profile.dart';
+import 'package:fertilizer_recommendation_system/user_navigator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fertilizer_recommendation_system/pages/login.dart';
@@ -18,12 +18,14 @@ Future<void> main() async{
   await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   runApp(
       MaterialApp(
-        initialRoute: '/home',
+        initialRoute: '/userNavigator',
         routes: {
           '/login': (context) => const Login(),
           '/home': (context) => const HomePage(),
           '/register': (context) => const SignUp(),
-          '/weather': (context) => const WeatherApp(),
+          '/userNavigator': (context) => const UserNaviagator(),
+          '/profile': (context) => Profile(),
+
     },
   ));
 }

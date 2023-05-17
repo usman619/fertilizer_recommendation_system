@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 
-Widget circularIndicator(String title, String symbol, int value) {
+Widget circularIndicator(String title, String symbol, var value) {
 
   String view = value.toString() + symbol;
-  double percent = value.toDouble() / 100;
+  double percent = value.toDouble() / 100.0;
 
   return Container(
     margin: const EdgeInsets.all(15),
@@ -17,7 +17,7 @@ Widget circularIndicator(String title, String symbol, int value) {
           color: Colors.grey.withOpacity(0.5),  // Shadow color
           spreadRadius: 2,                      // Spread radius
           blurRadius: 5,                        // Blur radius
-          offset: const Offset(0, 3),                  // Offset in the x,y direction
+          offset: const Offset(0, 3),           // Offset in the x,y direction
         ),
       ],
 

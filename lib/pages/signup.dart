@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,6 +21,8 @@ class _SignUpState extends State<SignUp> {
   final _phone = TextEditingController();
   final _password = TextEditingController();
 
+  bool obscurePassword = true;
+
   @override
   void dispose() {
     _name.dispose();
@@ -36,7 +40,7 @@ class _SignUpState extends State<SignUp> {
         email: email,
         password: password,
       );
-      // User registration successful, add name and dob to firestore
+      // User registration successful, add name and dob to Firestore
       await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
         'name': name,
         'dob': dob,
@@ -111,7 +115,7 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.all(20),
+              margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
               child: TextField(
                 controller: _name,
                 decoration: const InputDecoration(
@@ -121,7 +125,7 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.all(20),
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: TextField(
                 controller: _email,
                 keyboardType: TextInputType.emailAddress,
@@ -134,7 +138,7 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.all(20),
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: TextField(
                 controller: _phone,
                 keyboardType: TextInputType.phone,
@@ -146,82 +150,97 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
             ),
-            Container(
-              margin: const EdgeInsets.all(20),
-              child: TextField(
-                controller: _dob,
-                keyboardType: TextInputType.datetime,
-                enableSuggestions: false,
-                autocorrect: false,
-                decoration: const InputDecoration(
-                    icon: Icon(Icons.calendar_today),
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your Date of Birth'
-                ),
-                readOnly: true,
-                onTap: () async{
-                  DateTime? pickedDate = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(1950),
-                      //DateTime.now() - not to allow to choose before today.
-                      lastDate: DateTime(2100));
 
-                  if (pickedDate != null) {
-                    print(
-                        pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                    String formattedDate =
-                    DateFormat('yyyy-MM-dd').format(pickedDate);
-                    print(
-                        formattedDate); //formatted date output using intl package =>  2021-03-16
-                    setState(() {
-                      _dob.text = formattedDate;
-                    });
-                  } else {}
-                }
+          Container(
+            margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+            child: TextField(
+              controller: _dob,
+              keyboardType: TextInputType.datetime,
+              enableSuggestions: false,
+              autocorrect: false,
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.calendar_today),
+                border: OutlineInputBorder(),
+                labelText: 'Enter your Date of Birth',
               ),
+              readOnly: true,
+              onTap: () async {
+                DateTime? pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1950),
+                  lastDate: DateTime(2100),
+                );
 
+                if (pickedDate != null) {
+                  String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
+                  setState(() {
+                    _dob.text = formattedDate;
+                  });
+                }
+              },
             ),
+          ),
+
             Container(
-              margin: const EdgeInsets.all(20),
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: TextField(
                 controller: _password,
-                obscureText: true,
+                obscureText: obscurePassword,
                 enableSuggestions: false,
                 autocorrect: false,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your Password'
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: 'Enter your Password',
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        obscurePassword = !obscurePassword;
+                      });
+                    },
+                    icon: Icon(
+                      obscurePassword ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
               ),
             ),
+
+
+            // Register new the user to Firebase
             Container(
-              margin: const EdgeInsets.all(20),
-              child: TextButton(
-                onPressed: (){
-                  registerUser(_email.text, _password.text, _name.text, _dob.text);
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                          (Set<MaterialState> states) {
-                        return Colors.blue;
-                      }
-                  ),
-                  minimumSize: MaterialStateProperty.resolveWith<Size?>(
-                          (Set<MaterialState> states) {
-                        return const Size.fromHeight(50);
-                      }
-                  ),
-                ),
-                child: const Text(
-                  'Register',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              child: Material(
+                elevation: 2,
+                borderRadius: BorderRadius.circular(8),
+                child: InkWell(
+                  onTap: () {
+                    registerUser(_email.text, _password.text, _name.text, _dob.text);
+                  },
+                  borderRadius: BorderRadius.circular(8),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Text(
+                        'Register',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
+
 
           ],
         ),

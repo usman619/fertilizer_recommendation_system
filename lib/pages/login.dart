@@ -15,6 +15,8 @@ class _LoginState extends State<Login> {
   final _password = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  bool obscurePassword = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,41 +49,66 @@ class _LoginState extends State<Login> {
                 decoration: const InputDecoration(
 
                   border: OutlineInputBorder(),
-                  labelText: 'Enter your username'
+                  labelText: 'Enter your Email'
                 ),
               ),
             ),
 
             Container(
-              margin: const EdgeInsets.all(20),
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: TextField(
                 controller: _password,
-                obscureText: true,
+                obscureText: obscurePassword,
                 enableSuggestions: false,
                 autocorrect: false,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your password'
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: 'Enter your Password',
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        obscurePassword = !obscurePassword;
+                      });
+                    },
+                    icon: Icon(
+                      obscurePassword ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
               ),
             ),
+
+            // Login user button
             Container(
               margin: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-              child: TextButton(
-                // Login to the account
-                onPressed: () async {
-                  try {
-                    final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-                      email: _email.text,
-                      password: _password.text,
-                    );
-                    final User? user = userCredential.user;
-                    if (user != null) {
-                      // Navigate to the home screen
-                      // ignore: use_build_context_synchronously
-                      Navigator.pushNamed(context, '/home');
+              child: Material(
+                elevation: 2,
+                borderRadius: BorderRadius.circular(8),
+                child: InkWell(
+                  onTap: () async {
+                    try {
+                      final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+                        email: _email.text,
+                        password: _password.text,
+                      );
+                      final User? user = userCredential.user;
+                      if (user != null) {
+                        Navigator.pushNamed(context, '/home');
+                        Fluttertoast.showToast(
+                          msg: "Successfully Logged In",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
+                      }
+                    } catch (e) {
+                      print(e);
                       Fluttertoast.showToast(
-                        msg: "Successfully Logged In",
+                        msg: "Unable to login",
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.BOTTOM,
                         timeInSecForIosWeb: 1,
@@ -90,70 +117,65 @@ class _LoginState extends State<Login> {
                         fontSize: 16.0,
                       );
                     }
-                  } catch (e) {
-                    // Handle sign in errors
-                    print(e);
-                    Fluttertoast.showToast(
-                      msg: "Unable to login",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.red,
-                      textColor: Colors.white,
-                      fontSize: 16.0,
-                    );
-                  }
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                          (Set<MaterialState> states) {
-                        return Colors.blue;
-                      }
-                  ),
-                  minimumSize: MaterialStateProperty.resolveWith<Size?>(
-                          (Set<MaterialState> states) {
-                        return const Size.fromHeight(50);
-                      }
-                  ),
-                ),
-                child: const Text(
-                  'Login',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
+                  },
+                  borderRadius: BorderRadius.circular(8),
+                  child: SizedBox(
+                    width: double.infinity, // Set the width to fill the available space
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Text(
+                        'Login',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
 
+
+
             // Register new user button
             Container(
               margin: const EdgeInsets.fromLTRB(20, 5, 20, 5),
-              child: TextButton(
-                onPressed: (){
-                  Navigator.pushNamed(context, '/register');
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                          (Set<MaterialState> states) {
-                        return Colors.blue;
-                      }
-                  ),
-                  minimumSize: MaterialStateProperty.resolveWith<Size?>(
-                          (Set<MaterialState> states) {
-                        return const Size.fromHeight(50);
-                      }
-                  ),
-                ),
-                child: const Text(
-                  'Register',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
+              child: Material(
+                elevation: 2,
+                borderRadius: BorderRadius.circular(8),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/register');
+                  },
+                  borderRadius: BorderRadius.circular(8),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Text(
+                        'Register',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
+
 
 
           ],
