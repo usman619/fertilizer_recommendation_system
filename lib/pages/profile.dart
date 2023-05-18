@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -13,6 +14,16 @@ class _ProfileState extends State<Profile> {
   String phoneNo = '';
   String dob = '';
 
+  // For Sign Out
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void _signOut() async {
+    _auth.signOut();
+
+    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +32,22 @@ class _ProfileState extends State<Profile> {
           title: const Center(
             child: Text('Profile'),
           ),
+          actions: [
+            PopupMenuButton<String>(
+              onSelected: (value) {
+                if (value == 'sign_out') {
+                  _signOut();
+                }
+              },
+              itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                const PopupMenuItem<String>(
+                  value: 'sign_out',
+                  child: Text('Sign Out'),
+                ),
+              ],
+              child: const Icon(Icons.more_vert),
+            ),
+          ],
         ),
         body: ListView(
           children: <Widget>[
@@ -34,7 +61,7 @@ class _ProfileState extends State<Profile> {
                   stops: const [0.1, 0.9],
                 ),
               ),
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -68,12 +95,12 @@ class _ProfileState extends State<Profile> {
 
 
             Container(
-              child: Column(
+              child: const Column(
                 children: <Widget>[
                   ListTile(
                     title: Text(
                       'Email',
-                      style: const TextStyle(
+                      style:  TextStyle(
                         color: Colors.blue,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,

@@ -18,78 +18,16 @@ Future<void> main() async{
   await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   runApp(
       MaterialApp(
-        initialRoute: '/userNavigator',
+        initialRoute: '/login',
         routes: {
           '/login': (context) => const Login(),
           '/home': (context) => const HomePage(),
           '/register': (context) => const SignUp(),
           '/userNavigator': (context) => const UserNaviagator(),
-          '/profile': (context) => Profile(),
+          '/profile': (context) => const Profile(),
 
     },
   ));
 }
 
 
-
-// void main() {
-//   runApp(const MyApp());
-// }
-//
-// class MyApp extends StatefulWidget {
-//   const MyApp({super.key});
-//
-//   @override
-//   State<MyApp> createState() => _MyAppState();
-// }
-//
-// class _MyAppState extends State<MyApp> {
-//   var data;
-//   late String url;
-//   String QueryText = "Result: ";
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: const Scaffold(
-//         // appBar: AppBar(
-//         //   title: const Text('Testing Python Connection'),
-//         //
-//         // ),
-//         body: Login(),
-//       ),
-//     );
-//   }
-// }
-
-// Widget connectApi(){
-//   return Column(
-//     children: <Widget>[
-//       Text(
-//         QueryText,
-//         textAlign: TextAlign.center,
-//         style: const TextStyle(
-//           fontSize: 25,
-//           fontWeight: FontWeight.bold,
-//         ),
-//       ),
-//       TextButton(
-//         onPressed: () async {
-//
-//           var url = Uri.http("192.168.10.82:5000", "/api", {"Query": "my name is usman"});
-//           data = await Getdata(url);
-//           var dataJson = jsonDecode(data);
-//           setState(() {
-//             QueryText = dataJson['Query'];
-//           });
-//         },
-//         child: const Text('Get data'),
-//       )
-//     ],
-//   );
-// }

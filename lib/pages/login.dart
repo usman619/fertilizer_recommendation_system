@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import 'home_page.dart';
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -29,7 +31,7 @@ class _LoginState extends State<Login> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 20,),
+            const SizedBox(height: 15,),
             const Text(
               'Welcome',
               textAlign: TextAlign.center,
@@ -38,7 +40,7 @@ class _LoginState extends State<Login> {
                 fontSize: 30,
               ),
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 50),
             Container(
               margin: const EdgeInsets.all(20),
               child: TextField(
@@ -81,22 +83,41 @@ class _LoginState extends State<Login> {
 
             // Login user button
             Container(
-              margin: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+              width: double.infinity,
+              height: 60,
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: Material(
                 elevation: 2,
                 borderRadius: BorderRadius.circular(8),
                 child: InkWell(
-                  onTap: () async {
-                    try {
-                      final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-                        email: _email.text,
-                        password: _password.text,
-                      );
-                      final User? user = userCredential.user;
-                      if (user != null) {
-                        Navigator.pushNamed(context, '/home');
+                  onTap: () {},
+                  borderRadius: BorderRadius.circular(8),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      try {
+                        final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+                          email: _email.text,
+                          password: _password.text,
+                        );
+                        final User? user = userCredential.user;
+                        if (user != null) {
+
+                          Navigator.pushNamed(context, '/home');
+
+                          Fluttertoast.showToast(
+                            msg: "Successfully Logged In",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0,
+                          );
+                        }
+                      } catch (e) {
+                        print(e);
                         Fluttertoast.showToast(
-                          msg: "Successfully Logged In",
+                          msg: "Unable to login",
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
                           timeInSecForIosWeb: 1,
@@ -105,78 +126,59 @@ class _LoginState extends State<Login> {
                           fontSize: 16.0,
                         );
                       }
-                    } catch (e) {
-                      print(e);
-                      Fluttertoast.showToast(
-                        msg: "Unable to login",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                        fontSize: 16.0,
-                      );
-                    }
-                  },
-                  borderRadius: BorderRadius.circular(8),
-                  child: SizedBox(
-                    width: double.infinity, // Set the width to fill the available space
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                      textStyle: const TextStyle(
+                        fontSize: 20,
+                      ),
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Text(
-                        'Login',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
+                    ),
+                    child: const Text(
+                      'Login',
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
               ),
             ),
 
-
-
             // Register new user button
             Container(
-              margin: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+              width: double.infinity,
+              height: 60,
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: Material(
                 elevation: 2,
                 borderRadius: BorderRadius.circular(8),
                 child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/register');
-                  },
+                  onTap: () {},
                   borderRadius: BorderRadius.circular(8),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/register');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                      textStyle: const TextStyle(
+                        fontSize: 20,
+                      ),
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Text(
-                        'Register',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
+                    ),
+                    child: const Text(
+                      'Register',
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
               ),
             ),
-
-
 
           ],
         ),

@@ -1,4 +1,4 @@
-import 'dart:ffi';
+//import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -27,7 +27,7 @@ class _SignUpState extends State<SignUp> {
   void dispose() {
     _name.dispose();
     _email.dispose();
-    _dob.dispose(); // dispose the controller
+    _dob.dispose();
     _phone.dispose();
     _password.dispose();
     super.dispose();
@@ -182,6 +182,7 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
 
+
             Container(
               margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: TextField(
@@ -207,39 +208,43 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
 
-
             // Register new the user to Firebase
             Container(
+              width: double.infinity,
+              height: 60,
               margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: Material(
                 elevation: 2,
                 borderRadius: BorderRadius.circular(8),
                 child: InkWell(
-                  onTap: () {
-                    registerUser(_email.text, _password.text, _name.text, _dob.text);
-                  },
+                  onTap: () {},
                   borderRadius: BorderRadius.circular(8),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        registerUser(_email.text, _password.text, _name.text, _dob.text);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white,
+                        textStyle: const TextStyle(
+                          fontSize: 20,
+                        ),
                       ),
                       child: const Text(
                         'Register',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
                       ),
                     ),
                   ),
                 ),
               ),
             ),
+
+
 
 
           ],

@@ -1,5 +1,8 @@
-import 'package:fertilizer_recommendation_system/pages/profile.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fertilizer_recommendation_system/pages/add_device.dart';
+import 'package:fertilizer_recommendation_system/pages/models.dart';
+import 'package:fertilizer_recommendation_system/pages/profile.dart';
 import 'package:fertilizer_recommendation_system/pages/home_page.dart';
 
 
@@ -15,8 +18,8 @@ class _UserNaviagatorState extends State<UserNaviagator> {
 
   final List<Widget> _tabs = [
   HomePage(),
-  HomePage(),
-  HomePage(),
+  AddDevice(),
+  Models(),
   Profile()
   ];
 
@@ -35,7 +38,7 @@ class _UserNaviagatorState extends State<UserNaviagator> {
         // fixedColor: Colors.blue,
         backgroundColor: Colors.blue,
         selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
         useLegacyColorScheme: true,
         items: const [
           BottomNavigationBarItem(
