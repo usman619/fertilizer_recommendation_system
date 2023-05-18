@@ -2,9 +2,7 @@
 
 Final Year Project which is to recommend crops and  fertilizers. IoT devices are used for data collection.
 
-## Python Code
+## Ardunio Code
 
-- Flask code
-- Datasets
-- ML Models 
+- Connection Ardunio with NodeMCU which then uploads it to Firebase.
 
