@@ -1,0 +1,146 @@
+@startuml
+set namespaceSeparator ::
+
+class "fertilizer_recommendation_system::firebase_options.dart::DefaultFirebaseOptions" {
+  {static} +FirebaseOptions web
+  {static} +FirebaseOptions android
+  {static} +FirebaseOptions ios
+  {static} +FirebaseOptions currentPlatform
+}
+
+"fertilizer_recommendation_system::firebase_options.dart::DefaultFirebaseOptions" o-- "firebase_core_platform_interface::firebase_core_platform_interface.dart::FirebaseOptions"
+
+class "fertilizer_recommendation_system::pages::add_device.dart::AddDevice" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "fertilizer_recommendation_system::pages::add_device.dart::AddDevice"
+
+class "fertilizer_recommendation_system::pages::home_page.dart::HomePage" {
+  +State<HomePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "fertilizer_recommendation_system::pages::home_page.dart::HomePage"
+
+class "fertilizer_recommendation_system::pages::home_page.dart::_HomePageState" {
+  -String _locationMessage
+  -Map<String, dynamic> _weatherData
+  +void initState()
+  -dynamic _getLocation()
+  -Widget _buildWeatherData()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "fertilizer_recommendation_system::pages::home_page.dart::_HomePageState"
+
+class "fertilizer_recommendation_system::pages::login.dart::Login" {
+  +State<Login> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "fertilizer_recommendation_system::pages::login.dart::Login"
+
+class "fertilizer_recommendation_system::pages::login.dart::_LoginState" {
+  -TextEditingController _email
+  -TextEditingController _password
+  -FirebaseAuth _auth
+  +bool obscurePassword
+  +Widget build()
+}
+
+"fertilizer_recommendation_system::pages::login.dart::_LoginState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"fertilizer_recommendation_system::pages::login.dart::_LoginState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"flutter::src::widgets::framework.dart::State" <|-- "fertilizer_recommendation_system::pages::login.dart::_LoginState"
+
+class "fertilizer_recommendation_system::pages::models.dart::Models" {
+  +State<Models> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "fertilizer_recommendation_system::pages::models.dart::Models"
+
+class "fertilizer_recommendation_system::pages::models.dart::_ModelsState" {
+  +dynamic data
+  +String url
+  +String QueryText
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "fertilizer_recommendation_system::pages::models.dart::_ModelsState"
+
+class "fertilizer_recommendation_system::pages::profile.dart::Profile" {
+  +State<Profile> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "fertilizer_recommendation_system::pages::profile.dart::Profile"
+
+class "fertilizer_recommendation_system::pages::profile.dart::_ProfileState" {
+  +String userName
+  +String email
+  +String phoneNo
+  +String dob
+  -FirebaseAuth _auth
+  -void _signOut()
+  +Widget build()
+}
+
+"fertilizer_recommendation_system::pages::profile.dart::_ProfileState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"flutter::src::widgets::framework.dart::State" <|-- "fertilizer_recommendation_system::pages::profile.dart::_ProfileState"
+
+class "fertilizer_recommendation_system::pages::signup.dart::SignUp" {
+  +State<SignUp> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "fertilizer_recommendation_system::pages::signup.dart::SignUp"
+
+class "fertilizer_recommendation_system::pages::signup.dart::_SignUpState" {
+  -TextEditingController _name
+  -TextEditingController _email
+  -TextEditingController _dob
+  -TextEditingController _phone
+  -TextEditingController _password
+  +bool obscurePassword
+  +void dispose()
+  +dynamic registerUser()
+  +Widget build()
+}
+
+"fertilizer_recommendation_system::pages::signup.dart::_SignUpState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "fertilizer_recommendation_system::pages::signup.dart::_SignUpState"
+
+class "fertilizer_recommendation_system::services::weather_api.dart::WeatherApi" {
+  {static} +String apiUrl
+  {static} +String apiKey
+  {static} +String apiHost
+  {static} +dynamic getWeatherData()
+}
+
+class "fertilizer_recommendation_system::services::weather_api.dart::WeatherApp" {
+  +_WeatherAppState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "fertilizer_recommendation_system::services::weather_api.dart::WeatherApp"
+
+class "fertilizer_recommendation_system::services::weather_api.dart::_WeatherAppState" {
+  -String _locationMessage
+  -Map<String, dynamic> _weatherData
+  +void initState()
+  -dynamic _getLocation()
+  -Widget _buildWeatherData()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "fertilizer_recommendation_system::services::weather_api.dart::_WeatherAppState"
+
+class "fertilizer_recommendation_system::user_navigator.dart::UserNaviagator" {
+  +_UserNaviagatorState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "fertilizer_recommendation_system::user_navigator.dart::UserNaviagator"
+
+class "fertilizer_recommendation_system::user_navigator.dart::_UserNaviagatorState" {
+  -int _currentIndex
+  -List<Widget> _tabs
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "fertilizer_recommendation_system::user_navigator.dart::_UserNaviagatorState"
+@enduml

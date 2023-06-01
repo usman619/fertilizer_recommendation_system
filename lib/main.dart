@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:fertilizer_recommendation_system/pages/home_page.dart';
 import 'package:fertilizer_recommendation_system/pages/profile.dart';
+import 'package:fertilizer_recommendation_system/services/get_sensors_data.dart';
 import 'package:fertilizer_recommendation_system/user_navigator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:fertilizer_recommendation_system/pages/login.dart';
 import 'package:fertilizer_recommendation_system/pages/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:dcdg/dcdg.dart';
 
 
 Future<void> main() async{
@@ -18,7 +20,7 @@ Future<void> main() async{
   await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   runApp(
       MaterialApp(
-        initialRoute: '/login',
+        initialRoute: '/home',
         routes: {
           '/login': (context) => const Login(),
           '/home': (context) => const HomePage(),

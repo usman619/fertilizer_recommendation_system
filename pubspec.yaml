@@ -43,7 +43,8 @@ dependencies:
   cloud_firestore: ^4.7.1
   fluttertoast: ^8.2.1
   percent_indicator: ^4.2.3
-  firebase_database: ^10.2.1
+  firebase_database: ^10.2.2
+  dcdg: ^4.1.0
 
 dev_dependencies:
   flutter_test:

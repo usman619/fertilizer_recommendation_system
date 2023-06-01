@@ -82,7 +82,7 @@ class _ProfileState extends State<Profile> {
                     height: 10,
                   ),
                   Text(
-                    'User Name',
+                    'Muhammad Usman',
                     style: TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.bold,
@@ -107,7 +107,7 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     subtitle: Text(
-                      'user_email@email.com',
+                      'usmanshahab191@gmail.com',
                       style: TextStyle(
                         fontSize: 18,
                       ),
@@ -124,7 +124,7 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     subtitle: Text(
-                      '+92XXXXXXXXXXXX',
+                      '1234',
                       style: TextStyle(
                         fontSize: 18,
                       ),
@@ -141,7 +141,7 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     subtitle: Text(
-                      'dd-MM-yyy',
+                      '09-03-2000',
                       style: TextStyle(
                         fontSize: 18,
                       ),
