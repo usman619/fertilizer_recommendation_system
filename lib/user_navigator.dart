@@ -36,8 +36,8 @@ class _UserNaviagatorState extends State<UserNaviagator> {
           });
         },
         // fixedColor: Colors.blue,
-        backgroundColor: Colors.blue,
-        selectedItemColor: Colors.blue,
+        backgroundColor: Colors.green,
+        selectedItemColor: Colors.green,
         unselectedItemColor: Colors.grey,
         useLegacyColorScheme: true,
         items: const [

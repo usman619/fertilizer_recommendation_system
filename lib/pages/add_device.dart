@@ -9,6 +9,7 @@ class AddDevice extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Add Device'),
         centerTitle: true,
+        backgroundColor: Colors.green,
       ),
       body: const Center(
         child: Text('Future Feature'),

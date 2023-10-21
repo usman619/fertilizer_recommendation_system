@@ -130,6 +130,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Home Page'),
         centerTitle: true,
+        backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
         child: Column(children: <Widget>[

@@ -95,161 +95,227 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign Up'),
-        centerTitle: true,
-
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 10,),
-            const Text(
-              'Create new Account',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-              child: TextField(
-                controller: _name,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your Name'
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: TextField(
-                controller: _email,
-                keyboardType: TextInputType.emailAddress,
-                enableSuggestions: false,
-                autocorrect: false,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your Email'
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: TextField(
-                controller: _phone,
-                keyboardType: TextInputType.phone,
-                enableSuggestions: false,
-                autocorrect: false,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter Phone Number'
-                ),
-              ),
-            ),
-
-          Container(
-            margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-            child: TextField(
-              controller: _dob,
-              keyboardType: TextInputType.datetime,
-              enableSuggestions: false,
-              autocorrect: false,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.calendar_today),
-                border: OutlineInputBorder(),
-                labelText: 'Enter your Date of Birth',
-              ),
-              readOnly: true,
-              onTap: () async {
-                DateTime? pickedDate = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(1950),
-                  lastDate: DateTime(2100),
-                );
-
-                if (pickedDate != null) {
-                  String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
-                  setState(() {
-                    _dob.text = formattedDate;
-                  });
-                }
-              },
+    return Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/login_image_blur.jpg'), // Change the image path as needed
+              fit: BoxFit.cover,
             ),
           ),
+        ),
+        Scaffold(
+          appBar: AppBar(
+            title: const Text('Sign Up'),
+            centerTitle: true,
+            backgroundColor: Colors.green,
 
-
-            Container(
-              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: TextField(
-                controller: _password,
-                obscureText: obscurePassword,
-                enableSuggestions: false,
-                autocorrect: false,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  labelText: 'Enter your Password',
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        obscurePassword = !obscurePassword;
-                      });
-                    },
-                    icon: Icon(
-                      obscurePassword ? Icons.visibility_off : Icons.visibility,
-                      color: Colors.grey,
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 10,),
+                const Text(
+                  'Create new Account',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                  child: TextField(
+                    controller: _name,
+                    decoration: const InputDecoration(
+                        focusColor: Colors.green,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                        ),
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter your Name',
+                        labelStyle: TextStyle(
+                          color: Colors.green,
+                        )
                     ),
                   ),
                 ),
-              ),
-            ),
-
-            // Register new the user to Firebase
-            Container(
-              width: double.infinity,
-              height: 60,
-              margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: Material(
-                elevation: 2,
-                borderRadius: BorderRadius.circular(8),
-                child: InkWell(
-                  onTap: () {},
-                  borderRadius: BorderRadius.circular(8),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: TextField(
+                    controller: _email,
+                    keyboardType: TextInputType.emailAddress,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: const InputDecoration(
+                        focusColor: Colors.green,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                        ),
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter your Email',
+                        labelStyle: TextStyle(
+                          color: Colors.green,
+                        )
                     ),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        registerUser(_email.text, _password.text, _name.text, _dob.text);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        foregroundColor: Colors.white,
-                        textStyle: const TextStyle(
-                          fontSize: 20,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: TextField(
+                    controller: _phone,
+                    keyboardType: TextInputType.phone,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: const InputDecoration(
+                        focusColor: Colors.green,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                        ),
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter Phone Number',
+                        labelStyle: TextStyle(
+                          color: Colors.green,
+                        )
+                    ),
+                  ),
+                ),
+
+                Container(
+                  margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: TextField(
+                    controller: _dob,
+                    keyboardType: TextInputType.datetime,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: const InputDecoration(
+                        focusColor: Colors.green,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                        ),
+                        prefixIcon: Icon(
+                          Icons.calendar_today,
+                          color: Colors.green,
+                        ),
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter your Date of Birth',
+                        labelStyle: TextStyle(
+                          color: Colors.green,
+                        )
+                    ),
+                    readOnly: true,
+                    onTap: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1950),
+                        lastDate: DateTime(2100),
+                      );
+
+                      if (pickedDate != null) {
+                        String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
+                        setState(() {
+                          _dob.text = formattedDate;
+                        });
+                      }
+                    },
+                  ),
+                ),
+
+
+                Container(
+                  margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: TextField(
+                    controller: _password,
+                    obscureText: obscurePassword,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: InputDecoration(
+                      focusColor: Colors.green,
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                      ),
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                      ),
+                      border: const OutlineInputBorder(),
+                      labelText: 'Enter your Password',
+                      labelStyle: const TextStyle(
+                        color: Colors.green,
+                      ),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            obscurePassword = !obscurePassword;
+                          });
+                        },
+                        icon: Icon(
+                          obscurePassword ? Icons.visibility_off : Icons.visibility,
+                          color: Colors.grey,
                         ),
                       ),
-                      child: const Text(
-                        'Register',
-                        textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+
+                // Register new the user to Firebase
+                Container(
+                  width: double.infinity,
+                  height: 60,
+                  margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: Material(
+                    elevation: 2,
+                    borderRadius: BorderRadius.circular(8),
+                    child: InkWell(
+                      onTap: () {},
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            registerUser(_email.text, _password.text, _name.text, _dob.text);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green,
+                            foregroundColor: Colors.white,
+                            textStyle: const TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                          child: const Text(
+                            'Register',
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
+
+
+
+
+              ],
             ),
-
-
-
-
-          ],
+          ),
         ),
-      ),
+      ]
     );
   }
 }

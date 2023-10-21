@@ -22,6 +22,7 @@ class _ModelsState extends State<Models> {
         appBar: AppBar(
           title: const Text('Testing Python Connection'),
           centerTitle: true,
+          backgroundColor: Colors.green,
 
         ),
         body: Column(

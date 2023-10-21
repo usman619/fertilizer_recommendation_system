@@ -28,7 +28,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.green,
           title: const Center(
             child: Text('Profile'),
           ),
@@ -55,7 +55,7 @@ class _ProfileState extends State<Profile> {
               height: 250,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.blue.shade200, Colors.blue.shade300],
+                  colors: [Colors.green.shade200, Colors.green.shade300],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   stops: const [0.1, 0.9],
@@ -74,6 +74,7 @@ class _ProfileState extends State<Profile> {
                         child: Icon(
                           Icons.person,
                           size: 120,
+                          color: Colors.green
                         ),
                       ),
                     ],
@@ -101,7 +102,7 @@ class _ProfileState extends State<Profile> {
                     title: Text(
                       'Email',
                       style:  TextStyle(
-                        color: Colors.blue,
+                        color: Colors.green,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -118,7 +119,7 @@ class _ProfileState extends State<Profile> {
                     title: Text(
                       'Phone',
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: Colors.green,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -135,7 +136,7 @@ class _ProfileState extends State<Profile> {
                     title: Text(
                       'Date of Birth',
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: Colors.green,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
