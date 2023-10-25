@@ -38,8 +38,8 @@ dependencies:
   intl: ^0.18.0
   http: ^0.13.6
   geolocator: ^9.0.2
-  firebase_core: ^2.12.0
-  firebase_auth: ^4.6.1
+  firebase_core: ^2.19.0
+  firebase_auth: ^4.11.1
   cloud_firestore: ^4.7.1
   fluttertoast: ^8.2.1
   percent_indicator: ^4.2.3
@@ -50,6 +50,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  http: ^0.13.3
+  http_testing: ^0.3.0
+  http_mock_adapter: ^0.6.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -39,7 +39,7 @@ class _ModelsState extends State<Models> {
             Center(
               child: ElevatedButton(
                 onPressed: () async {
-                  var url = Uri.http("192.168.10.82:5000", "/api", {"Query": "my name is usman"});
+                  var url = Uri.http("10.0.2.2:5000", "/api", {"Query": "my name is usman"});
                   data = await Getdata(url);
                   var dataJson = jsonDecode(data);
                   setState(() {
@@ -48,7 +48,7 @@ class _ModelsState extends State<Models> {
                 },
                 child: const Text('Get data'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.green,
                   foregroundColor: Colors.white,
                 ),
               ),

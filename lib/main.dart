@@ -28,7 +28,7 @@ Future<void> main() async{
           '/register': (context) => const SignUp(),
           '/userNavigator': (context) => const UserNaviagator(),
           '/profile': (context) => const Profile(),
-          '/intro_screen': (context) => const OnBoardingPage(),
+          // '/intro_screen': (context) => const OnBoardingPage(),
 
     },
   ));
