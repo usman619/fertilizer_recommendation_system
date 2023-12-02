@@ -1,3 +1,4 @@
+import 'package:fertilizer_recommendation_system/pages/showWeather.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fertilizer_recommendation_system/pages/add_device.dart';
@@ -17,10 +18,11 @@ class _UserNaviagatorState extends State<UserNaviagator> {
   int _currentIndex = 0;
 
   final List<Widget> _tabs = [
-  HomePage(),
-  AddDevice(),
-  Models(),
-  Profile()
+  // const HomePage(),
+  WeatherScreen(),
+  const AddDevice(),
+  const Models(),
+  const Profile()
   ];
 
   @override

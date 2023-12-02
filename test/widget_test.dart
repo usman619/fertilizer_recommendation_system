@@ -30,26 +30,18 @@ void main() {
   });
 }
 */
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:fertilizer_recommendation_system/services/get_sensors_data.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter_test/flutter_test.dart';
-import 'package:fertilizer_recommendation_system/pages/models.dart';
-import 'package:fertilizer_recommendation_system/services/model_api.dart';
-import 'package:http/testing.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:fertilizer_recommendation_system/widgets/circular_indicator.dart'; // Replace with your import path
-import 'package:fertilizer_recommendation_system/main.dart'; // Replace with your import path
+// Replace with your import path
+// Replace with your import path
 
 void main() {
   group('GetSensorsData Widget Tests', () {
     testWidgets('Widget Renders Without Errors', (WidgetTester tester) async {
       // Build the GetSensorsData widget
-      await tester.pumpWidget(MaterialApp(home: GetSensorsData()));
+      await tester.pumpWidget(const MaterialApp(home: GetSensorsData()));
 
       // Verify that the widget is rendered without errors
       expect(find.byType(GetSensorsData), findsOneWidget);
@@ -57,7 +49,7 @@ void main() {
 
     testWidgets('Moisture Data Display Test', (WidgetTester tester) async {
       // Build the GetSensorsData widget with a specific moistureData value
-      await tester.pumpWidget(MaterialApp(
+      await tester.pumpWidget(const MaterialApp(
         home: GetSensorsData(),
       ));
 

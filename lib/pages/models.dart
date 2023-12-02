@@ -46,11 +46,11 @@ class _ModelsState extends State<Models> {
                     QueryText = dataJson['Query'];
                   });
                 },
-                child: const Text('Get data'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
                   foregroundColor: Colors.white,
                 ),
+                child: const Text('Get data'),
               ),
 
             )

@@ -46,12 +46,12 @@ dependencies:
   firebase_database: ^10.2.2
   dcdg: ^4.1.0
   introduction_screen: ^3.1.12
+  sleek_circular_slider: ^2.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   http: ^0.13.3
-  http_testing: ^0.3.0
   http_mock_adapter: ^0.6.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -76,6 +76,8 @@ flutter:
   assets:
   - assets/login_image.jpg
   - assets/login_image_blur.jpg
+  - assets/icons/
+  - assets/weather/
 #    - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

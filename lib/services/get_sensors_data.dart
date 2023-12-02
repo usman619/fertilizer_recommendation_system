@@ -1,12 +1,12 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import '../widgets/circular_indicator.dart';
 
 class GetSensorsData extends StatefulWidget {
+  const GetSensorsData({super.key});
+
   @override
   _GetSensorsDataState createState() => _GetSensorsDataState();
 }
@@ -53,7 +53,7 @@ class _GetSensorsDataState extends State<GetSensorsData> {
     return Center(
         child: moistureData != null
             ? IoTDevice(moistureData)
-            : CircularProgressIndicator(),
+            : const CircularProgressIndicator(),
       );
   }
 }

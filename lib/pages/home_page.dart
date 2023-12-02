@@ -1,5 +1,4 @@
 import 'package:fertilizer_recommendation_system/services/get_sensors_data.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fertilizer_recommendation_system/services/weather_api.dart';
 import 'package:geolocator/geolocator.dart';
@@ -145,7 +144,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          GetSensorsData(),
+          const GetSensorsData(),
 
         ]
         ),

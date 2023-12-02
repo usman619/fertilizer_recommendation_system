@@ -52,6 +52,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '176097130446',
     projectId: 'fertilizer-recommendatio-73585',
     authDomain: 'fertilizer-recommendatio-73585.firebaseapp.com',
+    databaseURL: 'https://fertilizer-recommendatio-73585-default-rtdb.firebaseio.com',
     storageBucket: 'fertilizer-recommendatio-73585.appspot.com',
     measurementId: 'G-4Z3HFEPV5L',
   );
@@ -61,6 +62,7 @@ class DefaultFirebaseOptions {
     appId: '1:176097130446:android:d42d157eb292f516e8dd9f',
     messagingSenderId: '176097130446',
     projectId: 'fertilizer-recommendatio-73585',
+    databaseURL: 'https://fertilizer-recommendatio-73585-default-rtdb.firebaseio.com',
     storageBucket: 'fertilizer-recommendatio-73585.appspot.com',
   );
 
@@ -69,6 +71,7 @@ class DefaultFirebaseOptions {
     appId: '1:176097130446:ios:324b3568079799c4e8dd9f',
     messagingSenderId: '176097130446',
     projectId: 'fertilizer-recommendatio-73585',
+    databaseURL: 'https://fertilizer-recommendatio-73585-default-rtdb.firebaseio.com',
     storageBucket: 'fertilizer-recommendatio-73585.appspot.com',
     iosClientId: '176097130446-5vp7a6087dhs3n1or27j5mp7u67570sg.apps.googleusercontent.com',
     iosBundleId: 'com.example.fertilizerRecommendationSystem',
