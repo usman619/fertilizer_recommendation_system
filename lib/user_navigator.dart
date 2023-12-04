@@ -1,8 +1,9 @@
+import 'package:fertilizer_recommendation_system/pages/recommendation.dart';
 import 'package:fertilizer_recommendation_system/pages/showWeather.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fertilizer_recommendation_system/pages/add_device.dart';
-import 'package:fertilizer_recommendation_system/pages/models.dart';
+import 'package:fertilizer_recommendation_system/pages/crop_model.dart';
 import 'package:fertilizer_recommendation_system/pages/profile.dart';
 import 'package:fertilizer_recommendation_system/pages/home_page.dart';
 
@@ -21,7 +22,8 @@ class _UserNaviagatorState extends State<UserNaviagator> {
   // const HomePage(),
   WeatherScreen(),
   const AddDevice(),
-  const Models(),
+  const Recommendation(),
+  // const CropModel(),
   const Profile()
   ];
 

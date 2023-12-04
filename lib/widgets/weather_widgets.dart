@@ -39,12 +39,12 @@ Widget tempeatureAreaWidget(String iconCode, String des,String temp) {
   );
 }
 
-Widget circularIndicatorWidget(String hum){
+Widget circularIndicatorWidget(String hum) {
   double value = hum != null ? double.tryParse(hum) ?? 0.0 : 0.0;
   return Column(
     children: [
       SizedBox(
-        height: 180,
+        height: 140, // Adjust the height as needed
         child: Column(
           children: [
             Center(
@@ -78,8 +78,9 @@ Widget circularIndicatorWidget(String hum){
   );
 }
 
-Widget circularIndicatorMoisture(String hum){
-  double value = hum != null ? double.tryParse(hum) ?? 0.0 : 0.0;
+
+Widget circularIndicatorMoisture(String moist){
+  double value = moist != null ? double.tryParse(moist) ?? 0.0 : 0.0;
   return Column(
     children: [
       SizedBox(
@@ -95,7 +96,7 @@ Widget circularIndicatorMoisture(String hum){
                     customWidths: CustomSliderWidths(
                         handlerSize: 0, trackWidth: 12, progressBarWidth: 12),
                     infoProperties: InfoProperties(
-                        bottomLabelText: "Humidity",
+                        bottomLabelText: "Moisture",
                         bottomLabelStyle: const TextStyle(
                             letterSpacing: 0.1, fontSize: 14, height: 1.5)),
                     animationEnabled: true,
