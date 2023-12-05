@@ -7,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+  const SignUp({super.key});
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -226,13 +226,11 @@ class _SignUpState extends State<SignUp> {
                         lastDate: DateTime(2100),
                       );
 
-                      if (pickedDate != null) {
-                        String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate);
-                        setState(() {
-                          _dob.text = formattedDate;
-                        });
-                      }
-                    },
+                      String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate!);
+                      setState(() {
+                        _dob.text = formattedDate;
+                      });
+                                        },
                   ),
                 ),
 

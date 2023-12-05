@@ -1,5 +1,5 @@
 import 'package:fertilizer_recommendation_system/pages/crop_model.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:fertilizer_recommendation_system/pages/fertilizer_model.dart';
 import 'package:flutter/material.dart';
 
 class Recommendation extends StatelessWidget {
@@ -32,7 +32,7 @@ class Recommendation extends StatelessWidget {
           body: const TabBarView(
             children: [
               CropModel(),
-              Icon(Icons.agriculture),
+              FertilizerModel(),
             ],
           ),
         ),

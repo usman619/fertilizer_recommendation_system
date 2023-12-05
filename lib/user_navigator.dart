@@ -3,13 +3,11 @@ import 'package:fertilizer_recommendation_system/pages/showWeather.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fertilizer_recommendation_system/pages/add_device.dart';
-import 'package:fertilizer_recommendation_system/pages/crop_model.dart';
 import 'package:fertilizer_recommendation_system/pages/profile.dart';
-import 'package:fertilizer_recommendation_system/pages/home_page.dart';
 
 
 class UserNaviagator extends StatefulWidget {
-  const UserNaviagator({Key? key}) : super(key: key);
+  const UserNaviagator({super.key});
 
   @override
   _UserNaviagatorState createState() => _UserNaviagatorState();
@@ -20,7 +18,7 @@ class _UserNaviagatorState extends State<UserNaviagator> {
 
   final List<Widget> _tabs = [
   // const HomePage(),
-  WeatherScreen(),
+  const WeatherScreen(),
   const AddDevice(),
   const Recommendation(),
   // const CropModel(),

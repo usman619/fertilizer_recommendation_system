@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../services/model_api.dart';
@@ -8,13 +8,34 @@ class CropModel extends StatefulWidget {
   const CropModel({super.key});
 
   @override
+
   State<CropModel> createState() => _CropModelState();
 }
 
 class _CropModelState extends State<CropModel> {
+  late TextEditingController nController;
+  late TextEditingController pController;
+  late TextEditingController kController;
+  late TextEditingController tempController;
+  late TextEditingController phController;
+  late TextEditingController humidityController;
+  late TextEditingController rainfallController;
+
   var data;
   late String url;
-  String QueryText = "Result: ";
+  String queryText = "Result: ";
+
+  @override
+  void initState() {
+    super.initState();
+    nController = TextEditingController();
+    pController = TextEditingController();
+    kController = TextEditingController();
+    tempController = TextEditingController();
+    phController = TextEditingController();
+    humidityController = TextEditingController();
+    rainfallController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +50,6 @@ class _CropModelState extends State<CropModel> {
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
-
                 ),
               ),
             ),
@@ -40,10 +60,12 @@ class _CropModelState extends State<CropModel> {
                 decoration: InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
                   ),
                   border: OutlineInputBorder(),
                   labelText: 'N (Nitrogen)',
@@ -61,10 +83,12 @@ class _CropModelState extends State<CropModel> {
                 decoration: InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
                   ),
                   border: OutlineInputBorder(),
                   labelText: 'P (Phosphorus)',
@@ -81,10 +105,12 @@ class _CropModelState extends State<CropModel> {
                 decoration: InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
                   ),
                   border: OutlineInputBorder(),
                   labelText: 'K (Potassium)',
@@ -101,10 +127,12 @@ class _CropModelState extends State<CropModel> {
                 decoration: InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
                   ),
                   border: OutlineInputBorder(),
                   labelText: 'Temperature (°C)',
@@ -122,10 +150,35 @@ class _CropModelState extends State<CropModel> {
                 decoration: InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
+                  ),
+                  border: OutlineInputBorder(),
+                  labelText: 'Humidity',
+                  labelStyle: TextStyle(
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+            ),
+
+            Container(
+              margin: const EdgeInsets.fromLTRB(20, 20, 20, 5),
+              child: const TextField(
+                controller: null,
+                decoration: InputDecoration(
+                  focusColor: Colors.green,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
                   ),
                   border: OutlineInputBorder(),
                   labelText: 'pH',
@@ -143,10 +196,12 @@ class _CropModelState extends State<CropModel> {
                 decoration: InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green), // Change the color as needed
+                    borderSide: BorderSide(
+                        color: Colors.green), // Change the color as needed
                   ),
                   border: OutlineInputBorder(),
                   labelText: 'Rainfall (mm)',
@@ -157,12 +212,10 @@ class _CropModelState extends State<CropModel> {
               ),
             ),
 
-
-
             // Wrap the Text widget with a SingleChildScrollView
             SingleChildScrollView(
               child: Text(
-                QueryText,
+                queryText,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25,
@@ -172,20 +225,71 @@ class _CropModelState extends State<CropModel> {
             ),
             const SizedBox(height: 30),
             Center(
-              child: ElevatedButton(
-                onPressed: () async {
-                  var url = Uri.http("10.0.2.2:5000", "/api", {"Query": "my name is usman"});
-                  data = await Getdata(url);
-                  var dataJson = jsonDecode(data);
-                  setState(() {
-                    QueryText = dataJson['Query'];
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: () async {
+                    var apiUrl = Uri.http("10.0.2.2:5000", "/api");
+
+                    // var jsonData = {
+                    //   "N": nController.text,
+                    //   "P": pController.text,
+                    //   "K": kController.text,
+                    //   "temperature": tempController.text,
+                    //   "humidity": phController.text,
+                    //   "ph": phController.text,
+                    //   "rainfall": rainfallController.text,
+                    // };
+
+                    // var jsonData = {
+                    //   "N": 90,
+                    //   "P": 42,
+                    //   "K": 43,
+                    //   "temp": 20.87974371,
+                    //   "humidity": 82.00274423,
+                    //   "ph": 6.502985292,
+                    //   "rainfall": 202.9355362
+                    // };
+
+                    // String jsonString = jsonEncode(jsonData);
+
+
+
+                    var jsonData = {
+                      "N": 90.toString(),
+                      "P": 42.toString(),
+                      "K": 43.toString(),
+                      "temp": 20.87974371.toString(),
+                      "humidity": 82.00274423.toString(),
+                      "ph": 6.502985292.toString(),
+                      "rainfall": 202.9355362.toString(),
+                    };
+                    // print(jsonString);
+
+
+                    // var response = await http.post(apiUrl, body: jsonData);
+                    var response = await http.post(
+                      apiUrl,
+                      headers: {'Content-Type': 'application/json'},
+                      body: jsonEncode(jsonData),
+                    );
+
+                    if (response.statusCode == 200) {
+                      var dataJson = jsonDecode(response.body);
+                      setState(() {
+                        queryText = "Result: ${dataJson['prediction']}";
+                        print(queryText);
+                      });
+                    } else {
+                      print('Error Response Body: ${response.body}');
+                      throw Exception('Failed to load data: ${response.statusCode}');
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.white,
+                  ),
+                  child: const Text('Get data'),
                 ),
-                child: const Text('Get data'),
               ),
             ),
           ],

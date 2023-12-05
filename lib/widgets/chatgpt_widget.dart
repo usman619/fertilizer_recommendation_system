@@ -19,8 +19,8 @@ class _ChatGPTResponseContainerState extends State<ChatGPTResponseContainer> {
   final RateLimiter rateLimiter = RateLimiter(2000); // 1000 milliseconds (1 second) delay
 
   Future<void> fetchChatGPTResponse() async {
-    final endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
-    final apiKey = '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'; // Replace with your OpenAI API key
+    const endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
+    const apiKey = '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'; // Replace with your OpenAI API key
 
     final payload = {
       'prompt': widget.prompt,

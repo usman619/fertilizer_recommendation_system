@@ -3,11 +3,11 @@
 import 'package:fertilizer_recommendation_system/pages/home_page.dart';
 import 'package:fertilizer_recommendation_system/pages/profile.dart';
 import 'package:fertilizer_recommendation_system/pages/showWeather.dart';
+import 'package:fertilizer_recommendation_system/pages/signup.dart';
 import 'package:fertilizer_recommendation_system/user_navigator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fertilizer_recommendation_system/pages/login.dart';
-import 'package:fertilizer_recommendation_system/pages/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async{
@@ -23,7 +23,7 @@ Future<void> main() async{
           '/register': (context) => const SignUp(),
           '/userNavigator': (context) => const UserNaviagator(),
           '/profile': (context) => const Profile(),
-          '/weatherscreen': (context) => WeatherScreen(),
+          '/weatherscreen': (context) => const WeatherScreen(),
           // '/intro_screen': (context) => const OnBoardingPage(),
 
     },

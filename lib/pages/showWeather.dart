@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../services/weatherBit_api.dart';
-import '../widgets/chatgpt_widget.dart';
 import '../widgets/weather_widgets.dart';
 
 class WeatherScreen extends StatefulWidget {
+  const WeatherScreen({super.key});
+
   @override
   _WeatherScreenState createState() => _WeatherScreenState();
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  WeatherBitApi _weatherBitApi = WeatherBitApi();
+  final WeatherBitApi _weatherBitApi = WeatherBitApi();
   Map<String, dynamic>? _weatherData; // Make it nullable
 
   @override

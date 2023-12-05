@@ -5,7 +5,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:fertilizer_recommendation_system/pages/home_page.dart';
 
 class OnBoardingPage extends StatefulWidget {
-  const OnBoardingPage({Key? key}) : super(key: key);
+  const OnBoardingPage({super.key});
 
   @override
   OnBoardingPageState createState() => OnBoardingPageState();

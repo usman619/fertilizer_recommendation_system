@@ -6,7 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import '../widgets/circular_indicator.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();

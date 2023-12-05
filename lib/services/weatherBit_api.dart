@@ -9,10 +9,6 @@ class WeatherBitApi {
   Future<Map<String, dynamic>> getCurrentWeather() async {
     Position position = await _getCurrentLocation();
 
-    if (position == null) {
-      throw Exception("Unable to get location");
-    }
-
     String url =
         '$apiUrl?lat=${position.latitude}&lon=${position.longitude}&key=$apiKey';
 
