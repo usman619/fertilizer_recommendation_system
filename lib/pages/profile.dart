@@ -21,138 +21,132 @@ class _ProfileState extends State<Profile> {
     _auth.signOut();
 
     Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: const Center(
-            child: Text('Profile'),
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        automaticallyImplyLeading: false,
+        title: const Center(
+          child: Text('Profile'),
+        ),
+        actions: [
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              if (value == 'sign_out') {
+                _signOut();
+              }
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+              const PopupMenuItem<String>(
+                value: 'sign_out',
+                child: Text('Sign Out'),
+              ),
+            ],
+            child: const Icon(Icons.more_vert),
           ),
-          actions: [
-            PopupMenuButton<String>(
-              onSelected: (value) {
-                if (value == 'sign_out') {
-                  _signOut();
-                }
-              },
-              itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                const PopupMenuItem<String>(
-                  value: 'sign_out',
-                  child: Text('Sign Out'),
+        ],
+      ),
+      body: ListView(
+        children: <Widget>[
+          Container(
+            height: 250,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.green.shade200, Colors.green.shade300],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                stops: const [0.1, 0.9],
+              ),
+            ),
+            child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundColor: Colors.white70,
+                      minRadius: 60.0,
+                      child: Icon(Icons.person, size: 120, color: Colors.green),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Muhammad Usman',
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ],
-              child: const Icon(Icons.more_vert),
             ),
-          ],
-        ),
-        body: ListView(
-          children: <Widget>[
-            Container(
-              height: 250,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.green.shade200, Colors.green.shade300],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  stops: const [0.1, 0.9],
-                ),
-              ),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundColor: Colors.white70,
-                        minRadius: 60.0,
-                        child: Icon(
-                          Icons.person,
-                          size: 120,
-                          color: Colors.green
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Muhammad Usman',
+          ),
+          Container(
+            child: const Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'Email',
                     style: TextStyle(
-                      fontSize: 35,
+                      color: Colors.green,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
                     ),
                   ),
-                ],
-              ),
+                  subtitle: Text(
+                    'usmanshahab191@gmail.com',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                Divider(),
+                ListTile(
+                  title: Text(
+                    'Phone',
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: Text(
+                    '1234',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                Divider(),
+                ListTile(
+                  title: Text(
+                    'Date of Birth',
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: Text(
+                    '09-03-2000',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ],
             ),
-
-
-            Container(
-              child: const Column(
-                children: <Widget>[
-                  ListTile(
-                    title: Text(
-                      'Email',
-                      style:  TextStyle(
-                        color: Colors.green,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    subtitle: Text(
-                      'usmanshahab191@gmail.com',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text(
-                      'Phone',
-                      style: TextStyle(
-                        color: Colors.green,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    subtitle: Text(
-                      '1234',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text(
-                      'Date of Birth',
-                      style: TextStyle(
-                        color: Colors.green,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    subtitle: Text(
-                      '09-03-2000',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-      );
+          )
+        ],
+      ),
+    );
   }
 }

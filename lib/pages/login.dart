@@ -120,7 +120,9 @@ class _LoginState extends State<Login> {
                     borderRadius: BorderRadius.circular(8),
                     child: ElevatedButton(
                       onPressed: () async {
+
                         try {
+
                           final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
                             email: _email.text,
                             password: _password.text,
@@ -128,7 +130,7 @@ class _LoginState extends State<Login> {
                           final User? user = userCredential.user;
                           if (user != null) {
 
-                            Navigator.pushNamed(context, '/home');
+                            // Navigator.pushNamed(context, '/home');
 
                             Fluttertoast.showToast(
                               msg: "Successfully Logged In",

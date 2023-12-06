@@ -14,6 +14,7 @@ class Recommendation extends StatelessWidget {
           appBar: AppBar(
             title: const Text('Recommendations'),
             centerTitle: true,
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.green,
             bottom: const TabBar(
               labelColor: Colors.black,

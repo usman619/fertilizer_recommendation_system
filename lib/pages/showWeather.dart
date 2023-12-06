@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../services/get_sensors_data.dart';
 import '../services/weatherBit_api.dart';
 import '../widgets/weather_widgets.dart';
 
@@ -41,12 +42,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Home',
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.green,
-      ),
+          title: const Text(
+            'Home',
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.green,
+          automaticallyImplyLeading: false),
       body: RefreshIndicator(
         onRefresh: _refreshWeatherData,
         child: Align(
@@ -96,18 +97,40 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       ),
                       margin: const EdgeInsets.all(5.0),
                       padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 0.0),
-                      child: Row(
-                        children: [
-                          const SizedBox(width: 15),
-                          circularIndicatorWidget(
-                              '${_weatherData!['data'][0]["rh"]}'),
-                          const SizedBox(width: 60),
-                          circularIndicatorWidget(
-                              '${_weatherData!['data'][0]["rh"]}'),
-                          const SizedBox(width: 15),
-                        ],
+                      child: Center(
+                        child: Row(
+                          children: [
+                            const SizedBox(
+                              width: 110,
+                              height: 15,
+                            ),
+                            circularIndicatorWidget(
+                                '${_weatherData!['data'][0]["rh"]}'),
+                            const SizedBox(
+                              width: 110,
+                              height: 15,
+                            ),
+                            // circularIndicatorWidget(
+                            //     '${_weatherData!['data'][0]["rh"]}'),
+                            // const SizedBox(width: 60),
+                            // circularIndicatorWidget(
+                            //     '${_weatherData!['data'][0]["rh"]}'),
+                            // const SizedBox(width: 15),
+                          ],
+                        ),
                       ),
                     ),
+                    const Center(
+                      child: Text(
+                        'IoT Device Data',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                        ),
+                      ),
+                    ),
+                    const GetSensorsData(),
                   ],
                 ),
         ),

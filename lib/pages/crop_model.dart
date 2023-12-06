@@ -55,9 +55,9 @@ class _CropModelState extends State<CropModel> {
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 5),
-              child: const TextField(
-                controller: null,
-                decoration: InputDecoration(
+              child: TextField(
+                controller: nController,
+                decoration: const InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -78,9 +78,9 @@ class _CropModelState extends State<CropModel> {
 
             Container(
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 5),
-              child: const TextField(
-                controller: null,
-                decoration: InputDecoration(
+              child:  TextField(
+                controller: pController,
+                decoration: const InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -100,9 +100,9 @@ class _CropModelState extends State<CropModel> {
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 5),
-              child: const TextField(
-                controller: null,
-                decoration: InputDecoration(
+              child:  TextField(
+                controller: kController,
+                decoration: const InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -122,9 +122,9 @@ class _CropModelState extends State<CropModel> {
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 5),
-              child: const TextField(
-                controller: null,
-                decoration: InputDecoration(
+              child: TextField(
+                controller: tempController,
+                decoration: const InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -145,9 +145,9 @@ class _CropModelState extends State<CropModel> {
 
             Container(
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 5),
-              child: const TextField(
-                controller: null,
-                decoration: InputDecoration(
+              child: TextField(
+                controller: humidityController,
+                decoration: const InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -168,9 +168,9 @@ class _CropModelState extends State<CropModel> {
 
             Container(
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 5),
-              child: const TextField(
-                controller: null,
-                decoration: InputDecoration(
+              child: TextField(
+                controller: phController,
+                decoration: const InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -191,9 +191,9 @@ class _CropModelState extends State<CropModel> {
 
             Container(
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 5),
-              child: const TextField(
-                controller: null,
-                decoration: InputDecoration(
+              child: TextField(
+                controller: rainfallController,
+                decoration: const InputDecoration(
                   focusColor: Colors.green,
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -230,15 +230,17 @@ class _CropModelState extends State<CropModel> {
                   onPressed: () async {
                     var apiUrl = Uri.http("10.0.2.2:5000", "/api");
 
-                    // var jsonData = {
-                    //   "N": nController.text,
-                    //   "P": pController.text,
-                    //   "K": kController.text,
-                    //   "temperature": tempController.text,
-                    //   "humidity": phController.text,
-                    //   "ph": phController.text,
-                    //   "rainfall": rainfallController.text,
-                    // };
+                    var jsonData = {
+                      "N": (nController.text),
+                      "P": (pController.text),
+                      "K": (kController.text),
+                      "temperature": (tempController.text),
+                      "humidity": (humidityController.text),
+                      "ph": (phController.text),
+                      "rainfall": (rainfallController.text),
+                    };
+                    //
+                    print(jsonData);
 
                     // var jsonData = {
                     //   "N": 90,
@@ -254,15 +256,15 @@ class _CropModelState extends State<CropModel> {
 
 
 
-                    var jsonData = {
-                      "N": 90.toString(),
-                      "P": 42.toString(),
-                      "K": 43.toString(),
-                      "temp": 20.87974371.toString(),
-                      "humidity": 82.00274423.toString(),
-                      "ph": 6.502985292.toString(),
-                      "rainfall": 202.9355362.toString(),
-                    };
+                    // var jsonData = {
+                    //   "N": 90.toString(),
+                    //   "P": 42.toString(),
+                    //   "K": 43.toString(),
+                    //   "temp": 20.toString(),
+                    //   "humidity": 82.toString(),
+                    //   "ph": 6.5.toString(),
+                    //   "rainfall": 203.toString(),
+                    // };
                     // print(jsonString);
 
 
